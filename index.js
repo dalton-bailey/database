@@ -57,6 +57,11 @@ app.delete("/skis", (req, res) => {
 });
 
 app.put("/skis", (req, res) => {
-    
+  Ski.updateOne({ name: req.query.name }, {quantity: req.query.quantity}, (err, skis) => {
+    Ski.find((err, skis) => {
+      if (err) console.log(err);
 
-})
+      res.json(skis);
+    });
+  });
+});
