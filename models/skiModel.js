@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
 const SkiSchema = new mongoose.Schema({
-    make: String,
-    model: String,
-    year: Number
+    name: String,
+    category: String,
+    price: Number,
+    quantity: Number,
+    id: Number
 })
 
 module.exports = mongoose.model('Ski', SkiSchema)
