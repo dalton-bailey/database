@@ -58,4 +58,5 @@ app.delete("/skis", (req, res) => {
 
 app.put("/skis", (req, res) => {
     
+
 })

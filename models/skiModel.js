@@ -8,4 +8,4 @@ const SkiSchema = new mongoose.Schema({
     id: Number
 })
 
-module.exports = mongoose.model('Ski', SkiSchema)
+module.exports = mongoose.model('Skis', SkiSchema)
