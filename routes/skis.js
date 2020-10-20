@@ -26,7 +26,7 @@ const Ski = require("../models/skiModel");
 // });
 
 // Route to get all Skis
-skiData.get("/skis", function(req,res) {
+skiData.get("/", function(req,res) {
   Ski.find({})
   .then(function(skis) {
     res.json(skis);
@@ -48,7 +48,7 @@ skiData.get("/skis", function(req,res) {
 // });
 
 // Route to delete a Ski
-skiData.delete("/skis", (req, res) => {
+skiData.delete("/", (req, res) => {
   Ski.deleteOne({ name: req.query.name }, (err, skis) => {
     Ski.find((err, skis) => {
       if (err) console.log(err);
@@ -108,7 +108,7 @@ skiData.delete("/skis", (req, res) => {
 // });
 
 // Get ski by id
-skiData.get("/skis/:id", (req, res) => {
+skiData.get("/:id", (req, res) => {
   Ski.findOne({ _id: req.params.id })
   .then(function(skis) {
     res.json(skis);
@@ -119,7 +119,7 @@ skiData.get("/skis/:id", (req, res) => {
 })
 
 // Update ski name and quantity 
-skiData.put("/skis", (req, res) => {
+skiData.put("/", (req, res) => {
     Ski.updateOne(
     { name: req.query.name },
     { quantity: req.query.quantity },
