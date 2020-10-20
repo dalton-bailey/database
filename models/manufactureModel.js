@@ -2,19 +2,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ManufactureSchema = new Schema({
-  name: { 
+  name: {
     type: String,
-    required: true },
+    required: true,
+  },
   address: {
     type: String,
-    required: true },
-  phone:  {
+    required: true,
+  },
+  phone: {
     type: String,
-    required: true },
-  ski: [{
-    type: Schema.Types.ObjectId,
-    ref: "Ski",
-  }],
+    required: true,
+  },
+  ski: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Ski",
+    },
+  ],
 });
 
 const Manufacture = mongoose.model("Manufacture", ManufactureSchema);
