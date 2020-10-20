@@ -1,11 +1,25 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const SkiSchema = new mongoose.Schema({
-    name: String,
-    category: String,
-    price: Number,
-    quantity: Number,
-    id: Number
-})
+const SkiSchema = new Schema({
+  name: {
+      type: String,
+      required: true,
+  },
+  category: {
+      type: String,
+      required: true,
+  },
+  price: {
+      type: Number,
+      required: true,
+  },
+  quantity: {
+      type: Number,
+      required: true,
+  },
+});
 
-module.exports = mongoose.model('Skis', SkiSchema)
+const Ski = mongoose.model("Ski", SkiSchema);
+
+module.exports = Ski;

@@ -1,9 +1,22 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const ManufactureSchema = new mongoose.Schema({
-    name: String,
-    address: String,
-    phone: String
-})
+const ManufactureSchema = new Schema({
+  name: { 
+    type: String,
+    required: true },
+  address: {
+    type: String,
+    required: true },
+  phone:  {
+    type: String,
+    required: true },
+  ski: [{
+    type: Schema.Types.ObjectId,
+    ref: "Ski",
+  }],
+});
 
-module.exports = mongoose.model('Manufactures', ManufactureSchema)
+const Manufacture = mongoose.model("Manufacture", ManufactureSchema);
+
+module.exports = Manufacture;
