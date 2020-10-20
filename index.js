@@ -35,110 +35,110 @@ app.get("/manufactures", (req,res) => {
   })
 });
 
-// // Route to get all Skis
-app.get("/skis", function(req,res) {
-  Ski.find({})
-  .then(function(skis) {
-    res.json(skis);
-  })
-  .catch(function(err) {
-    res.json(err);
-  })
-});
+// // // Route to get all Skis
+// app.get("/skis", function(req,res) {
+//   Ski.find({})
+//   .then(function(skis) {
+//     res.json(skis);
+//   })
+//   .catch(function(err) {
+//     res.json(err);
+//   })
+// });
 
-// Route to delete a Manufacture
-app.delete("/manufactures", (req, res) => {
-  Manufacture.deleteOne({ name: req.query.name }, (err, manufactures) => {
-    Manufacture.find((err, manufactures) => {
-      if (err) console.log(err);
+// // Route to delete a Manufacture
+// app.delete("/manufactures", (req, res) => {
+//   Manufacture.deleteOne({ name: req.query.name }, (err, manufactures) => {
+//     Manufacture.find((err, manufactures) => {
+//       if (err) console.log(err);
 
-      res.json(manufactures);
-    });
-  });
-});
+//       res.json(manufactures);
+//     });
+//   });
+// });
 
-// // Route to delete a Ski
-app.delete("/skis", (req, res) => {
-  Ski.deleteOne({ name: req.query.name }, (err, skis) => {
-    Ski.find((err, skis) => {
-      if (err) console.log(err);
+// // // Route to delete a Ski
+// app.delete("/skis", (req, res) => {
+//   Ski.deleteOne({ name: req.query.name }, (err, skis) => {
+//     Ski.find((err, skis) => {
+//       if (err) console.log(err);
 
-      res.json(skis);
-    });
-  });
-});
-
-
-// Route to create a Manufacture
-app.post("/manufactures", (req, res) => {
-  Manufacture.create({
-  name: req.query.name,
-  address: req.query.address,
-  phone: req.query.phone
-  })
-    .then(function(manufacture) {
-      res.json(manufacture);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
-});
+//       res.json(skis);
+//     });
+//   });
+// });
 
 
-// Route for creating a new Ski and updating Manufacture "Ski" field with it
-app.post("manufactures/:name", (req, res) => {
-  Ski.create({
-    name: req.query.name,
-    category: req.query.category,
-    price: req.query.price,
-    quantity: req.query.quantity
-  })
-    .then(function(ski) {
-      return Manufacture.findOneAndUpdate({ name: req.params.name }, { ski: ski._id }, { new: true });
-    })
-    .then(function(manufacture) {
-      res.json(manufacture);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
-});
+// // Route to create a Manufacture
+// app.post("/manufactures", (req, res) => {
+//   Manufacture.create({
+//   name: req.query.name,
+//   address: req.query.address,
+//   phone: req.query.phone
+//   })
+//     .then(function(manufacture) {
+//       res.json(manufacture);
+//     })
+//     .catch(function(err) {
+//       res.json(err);
+//     });
+// });
 
 
-// Route for retrieving a Manufacture by id and populating it's Ski.
-app.get("manufactures/:name", (req, res) => {
-  Manufacture.findOne({ name: req.params.name })
-    .populate("ski")
-    .then(function(manufacture) {
-      res.json(manufacture);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
-});
+// // Route for creating a new Ski and updating Manufacture "Ski" field with it
+// app.post("manufactures/:name", (req, res) => {
+//   Ski.create({
+//     name: req.query.name,
+//     category: req.query.category,
+//     price: req.query.price,
+//     quantity: req.query.quantity
+//   })
+//     .then(function(ski) {
+//       return Manufacture.findOneAndUpdate({ name: req.params.name }, { ski: ski._id }, { new: true });
+//     })
+//     .then(function(manufacture) {
+//       res.json(manufacture);
+//     })
+//     .catch(function(err) {
+//       res.json(err);
+//     });
+// });
 
-// // Get ski by id
-app.get("/skis/:id", (req, res) => {
-  Ski.findOne({ _id: req.params.id })
-  .then(function(skis) {
-    res.json(skis);
-  })
-  .catch(function(err) {
-    res.json(err);
-  })
-})
 
-// // Update ski name and quantity 
-app.put("/skis", (req, res) => {
-    Ski.updateOne(
-    { name: req.query.name },
-    { quantity: req.query.quantity },
-    (err, skis) => {
-      Ski.find((err, skis) => {
-        if (err) console.log(err);
+// // Route for retrieving a Manufacture by id and populating it's Ski.
+// app.get("manufactures/:name", (req, res) => {
+//   Manufacture.findOne({ name: req.params.name })
+//     .populate("ski")
+//     .then(function(manufacture) {
+//       res.json(manufacture);
+//     })
+//     .catch(function(err) {
+//       res.json(err);
+//     });
+// });
 
-        res.json(skis);
-      });
-    }
-  );
-});
+// // // Get ski by id
+// app.get("/skis/:id", (req, res) => {
+//   Ski.findOne({ _id: req.params.id })
+//   .then(function(skis) {
+//     res.json(skis);
+//   })
+//   .catch(function(err) {
+//     res.json(err);
+//   })
+// })
+
+// // // Update ski name and quantity 
+// app.put("/skis", (req, res) => {
+//     Ski.updateOne(
+//     { name: req.query.name },
+//     { quantity: req.query.quantity },
+//     (err, skis) => {
+//       Ski.find((err, skis) => {
+//         if (err) console.log(err);
+
+//         res.json(skis);
+//       });
+//     }
+//   );
+// });
