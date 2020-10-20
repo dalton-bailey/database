@@ -25,15 +25,43 @@ const Ski = require("./models/skiModel");
 const Manufacture = require("./models/manufactureModel");
 
 // Route to get all manufactutes
-app.get("/manufactures", (req,res) => {
-  Manufacture.find({})
-  .then(function(manufactures) {
-    res.json(manufactures);
-  })
-  .catch(function(err) {
-    res.json(err);
-  })
-});
+// app.get("/manufactures", (req, res) => {
+//   Manufacture.find({})
+//   .then(function(manufactures) {
+//     res.json(manufactures);
+//   })
+//   .catch(function(err) {
+//     res.json(err);
+//   })
+// });
+
+app.post('/manufactures', (req, res) => {
+    Manufacture.create({
+        name: req.query.name,
+        address: req.query.address,
+        phone: req.query.phone
+    }, (err, manufactures) => {
+        if(err)
+        console.log(err)
+
+        Manufacture.find((err, manufactures) => {
+            if(err)
+            console.log(err)
+
+            res.json(manufactures)
+        })
+    })
+})
+
+// app.get('/manufactures', (req, res) => {
+
+//     Manufacture.find(err, manufactures) => {
+//         if(err)
+//             console.log(err)
+
+//         res.json(manufactures)
+//     }
+// })
 
 // // // Route to get all Skis
 // app.get("/skis", function(req,res) {
