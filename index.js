@@ -145,8 +145,8 @@ app.put("/skis/:id", (req, res) => {
 });
 
 // Update manufacture by id
-app.put('/manufacturs/:id', (req, res) =>{
-    Manufacture.findById({ _id: req.params.id}, (err, ski) => {
+app.put('/manufactures/:id', (req, res) =>{
+    Manufacture.findById({ _id: req.params.id}, (err, manufacture) => {
         if (err) console.log(err)
 
         manufacture.update(req.query, (err, manufactures) => {
